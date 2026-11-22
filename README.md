@@ -25,7 +25,7 @@ Reference: [GitHub Pages custom workflows](https://docs.github.com/en/pages/gett
 
 ## Contact information
 
-No verified contact email was present in the repository. `YOUR_EMAIL@example.com` is visibly labeled as a placeholder, with no active mail link. Replace the entire `.contact-placeholder` block with a link to the real email when available, and update the contact description accordingly. Do not invent support or Asset Store URLs.
+Contact and product support: [trinhtuu.05@gmail.com](mailto:trinhtuu.05@gmail.com), supplied by the studio owner. The site uses the owner's supplied 512px logo in `lihto-logo.png`.
 
 ## Diagnosis (22 November 2026)
 

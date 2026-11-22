@@ -10,73 +10,111 @@
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Lihto Studio — Made to Play. Built to Create." />
   <meta property="og:description" content="Practical Unity tools, reusable game systems, and creative solutions for game developers." />
-  <link rel="icon" type="image/png" href="./lihto-logo.png" />
+  <link rel="icon" type="image/png" href="./lihto-logo.png?v=c64042e0" />
   <style>
-    :root { --bg:#17191F; --panel:#202227; --paper:#FFF0DC; --muted:#b3b1ad; --coral:#FF7565; --line:#3a3b3f; }
+    :root { --bg:#17191F; --panel:#1d2027; --paper:#FFF0DC; --muted:#b6b4b0; --coral:#FF7565; --line:#34373f; }
     * { box-sizing:border-box; }
     html { scroll-behavior:smooth; }
-    body { margin:0; background:var(--bg); color:var(--paper); font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; -webkit-font-smoothing:antialiased; }
+    body { margin:0; background:var(--bg); color:var(--paper); font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; -webkit-font-smoothing:antialiased; }
     a { color:inherit; text-decoration:none; }
-    a:focus-visible { outline:2px solid var(--coral); outline-offset:4px; }
-    .skip-link { position:absolute; top:10px; left:10px; padding:12px 18px; background:var(--paper); color:var(--bg); z-index:2; transform:translateY(-160%); }
+    a:focus-visible { outline:2px solid var(--coral); outline-offset:6px; border-radius:3px; }
+    ::selection { background:var(--coral); color:var(--bg); }
+    .wrap { width:min(1160px,calc(100% - 80px)); margin-inline:auto; }
+    .skip-link { position:absolute; top:12px; left:12px; padding:12px 18px; background:var(--paper); color:var(--bg); z-index:2; transform:translateY(-160%); }
     .skip-link:focus { transform:translateY(0); }
-    .wrap { width:min(1080px, calc(100% - 48px)); margin-inline:auto; }
-    header { min-height:88px; border-bottom:1px solid #ffffff14; }
-    .nav { min-height:88px; display:flex; justify-content:space-between; align-items:center; gap:24px; }
-    .brand { display:flex; align-items:center; gap:12px; min-width:0; }
-    .brand img { width:53px; height:53px; border-radius:9px; object-fit:cover; }
-    .brand-name { font-size:16px; font-weight:800; letter-spacing:.045em; }
-    .brand-name span { font-size:10px; display:block; color:#b8b4ad; font-weight:600; letter-spacing:.28em; margin-top:2px; }
-    nav { display:flex; gap:32px; font-size:13px; font-weight:500; color:#cbc9c5; }
-    nav a { display:inline-flex; align-items:center; min-height:44px; }
-    nav a:hover { color:var(--coral); }
-    .hero { min-height:550px; display:grid; grid-template-columns:1.18fr .82fr; align-items:center; gap:44px; padding-block:74px 82px; }
-    .eyebrow { color:var(--coral); letter-spacing:.18em; font-size:11px; font-weight:800; text-transform:uppercase; margin:0 0 23px; }
-    h1 { font-size:clamp(44px,5.6vw,76px); line-height:1.06; letter-spacing:-.057em; margin:0; font-weight:800; }
+    header { border-bottom:1px solid var(--line); }
+    .nav { min-height:100px; display:flex; justify-content:space-between; align-items:center; gap:24px; }
+    .brand { display:flex; align-items:center; gap:14px; }
+    .brand img { width:64px; height:64px; object-fit:contain; border-radius:10px; }
+    .brand-name { font-size:17px; font-weight:750; letter-spacing:.06em; }
+    .brand-name span { display:block; margin-top:4px; font-size:12px; font-weight:500; letter-spacing:.3em; color:var(--muted); }
+    nav { display:flex; align-items:center; gap:34px; color:var(--muted); font-size:14px; font-weight:500; }
+    nav a { display:inline-flex; align-items:center; min-height:44px; transition:color .18s ease; }
+    nav a:hover { color:var(--paper); }
+    nav a:last-child { padding-inline:20px; border:1px solid #53545a; border-radius:6px; color:var(--paper); }
+    .hero { display:grid; grid-template-columns:1.25fr 1fr; align-items:center; gap:48px; padding-block:96px 88px; }
+    .eyebrow { margin:0 0 24px; color:var(--coral); font-size:12px; font-weight:650; line-height:1.6; letter-spacing:.14em; text-transform:uppercase; }
+    h1 { margin:0; font-size:clamp(42px,5.2vw,72px); line-height:1.07; font-weight:750; letter-spacing:-.055em; }
     h1 em { color:var(--coral); font-style:normal; }
-    .studio-name { display:block; margin-bottom:20px; font-size:20px; letter-spacing:-.02em; line-height:1.3; }
-    .lead { font-size:16px; line-height:1.8; color:var(--muted); max-width:525px; margin:26px 0 34px; }
+    .studio-name { display:block; margin-bottom:20px; font-size:18px; line-height:1.4; letter-spacing:-.015em; font-weight:550; }
+    .lead { max-width:480px; margin:28px 0 32px; font-size:17px; line-height:1.8; color:var(--muted); }
     .actions { display:flex; flex-wrap:wrap; gap:12px; }
-    .btn { display:inline-flex; align-items:center; justify-content:center; min-height:46px; padding:0 22px; border-radius:7px; background:var(--coral); color:#1b1b1d; font-weight:750; font-size:13px; transition:transform .18s ease,background .18s ease; }
-    .btn:hover { background:#ff9586; transform:translateY(-2px); }
-    .btn-secondary { background:transparent; color:var(--paper); border:1px solid #68605d; }
-    .btn-secondary:hover { background:#26282c; }
-    .showcase { min-height:360px; background:var(--bg); border:1px solid #45403e; border-radius:22px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:35px; position:relative; overflow:hidden; }
-    .showcase:before { content:''; position:absolute; border:1px solid #ffffff14; inset:18px; border-radius:13px; pointer-events:none; }
-    .showcase img { width:min(280px,90%); height:auto; aspect-ratio:1; object-fit:contain; }
-    .showcase-note { margin-top:-8px; font-size:10px; color:#c7bdb2; letter-spacing:.18em; text-transform:uppercase; font-weight:700; }
-    section { scroll-margin-top:30px; }
-    .rule { border-top:1px solid var(--line); }
-    .section { padding:82px 0; }
-    .section-title { display:flex; align-items:end; justify-content:space-between; gap:18px; margin-bottom:28px; }
-    .section-title h2 { margin:0; font-size:clamp(28px,3vw,38px); letter-spacing:-.04em; }
-    .section-title p { margin:0; color:var(--muted); font-size:13px; }
-    .cards { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:15px; }
-    .card { border:1px solid var(--line); border-radius:14px; padding:30px 25px; background:var(--panel); }
-    .card .num { color:var(--coral); font-weight:800; font-size:13px; }
-    .card h3 { margin:30px 0 12px; font-size:20px; letter-spacing:-.02em; }
-    .card p { margin:0; font-size:13px; color:var(--muted); line-height:1.8; }
-    .about { display:grid; grid-template-columns:.6fr 1fr; gap:45px; }
-    .about h2 { font-size:35px; letter-spacing:-.04em; margin:0; }
-    .about p { color:#c5c0b8; line-height:1.9; font-size:15px; margin:0 0 16px; }
-    .contact { display:flex; justify-content:space-between; align-items:center; gap:24px; border:1px solid #70504a; background:#292327; border-radius:16px; padding:35px 40px; }
-    .contact h2 { font-size:29px; letter-spacing:-.035em; margin:0 0 8px; }
-    .contact p { color:#c9bfb7; margin:0; font-size:14px; line-height:1.7; }
-    .contact-placeholder { flex-shrink:0; max-width:100%; padding:16px 20px; border:1px dashed #89635c; border-radius:8px; }
-    .contact-placeholder code { color:var(--coral); overflow-wrap:anywhere; }
-    .contact-placeholder small { display:block; color:var(--muted); margin-top:8px; }
-    footer { display:flex; flex-wrap:wrap; justify-content:space-between; gap:16px; border-top:1px solid var(--line); padding:28px 0 40px; color:#a5a29d; font-size:12px; }
-    footer strong { color:var(--paper); }
-    @media(max-width:750px) {
-      .wrap{width:min(100% - 36px,1080px)} header,.nav{min-height:75px} nav{gap:16px;font-size:12px}
-      .hero{grid-template-columns:1fr;gap:36px;min-height:initial;padding:65px 0}
-      .showcase{min-height:280px}.showcase img{width:220px}
-      .section{padding:65px 0}.cards{grid-template-columns:1fr}.card h3{margin-top:20px}
-      .about{grid-template-columns:1fr;gap:18px}
-      .contact{align-items:start;flex-direction:column;padding:27px 24px}
+    .btn { display:inline-flex; align-items:center; justify-content:center; min-height:50px; padding:0 23px; border:1px solid transparent; border-radius:6px; background:var(--coral); color:var(--bg); font-size:14px; font-weight:650; transition:background .18s ease,border-color .18s ease; }
+    .btn:hover { background:#ff9486; }
+    .btn-secondary { background:transparent; color:var(--paper); border-color:#53545a; }
+    .btn-secondary:hover { background:var(--panel); border-color:var(--muted); }
+    .showcase { position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; min-width:0; padding:16px 20px 0; border:1px solid var(--line); border-radius:16px; overflow:hidden; background:#14171c; }
+    .showcase img { display:block; width:min(100%,400px); height:auto; aspect-ratio:1; object-fit:contain; }
+    .showcase-note { width:100%; padding:22px 0; border-top:1px solid var(--line); color:var(--muted); text-align:center; font-size:12px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; }
+    section { scroll-margin-top:32px; }
+    .rule { width:min(1160px,calc(100% - 80px)); margin-inline:auto; border-top:1px solid var(--line); }
+    .section { padding-block:80px; }
+    .section-title { display:flex; align-items:end; justify-content:space-between; gap:24px; margin-bottom:32px; }
+    .section-title h2 { margin:0; font-size:clamp(30px,3.3vw,42px); line-height:1.15; letter-spacing:-.04em; font-weight:650; }
+    .section-title p { margin:0; color:var(--muted); font-size:15px; line-height:1.6; }
+    .section-title .eyebrow { margin-bottom:12px; color:var(--coral); font-size:12px; }
+    .cards { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+    .card { padding:30px 32px 32px; border:1px solid var(--line); border-radius:10px; background:var(--panel); transition:border-color .18s ease; }
+    .card:hover { border-color:#70615e; }
+    .card-top { display:flex; align-items:center; gap:14px; }
+    .card-icon { display:grid; place-items:center; width:42px; height:42px; flex-shrink:0; border:1px solid #59403d; border-radius:8px; color:var(--coral); }
+    .card-icon svg { width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; }
+    .card h3 { margin:0; font-size:20px; font-weight:600; line-height:1.35; letter-spacing:-.025em; }
+    .card p { max-width:440px; margin:20px 0 0; color:var(--muted); font-size:16px; line-height:1.8; }
+    .about { display:grid; grid-template-columns:1fr 1.1fr; gap:80px; align-items:center; }
+    .about h2 { margin:0; font-size:clamp(34px,3.5vw,46px); line-height:1.18; font-weight:650; letter-spacing:-.04em; }
+    .about .eyebrow { margin-bottom:18px; }
+    .about-copy p { margin:0 0 20px; color:var(--muted); font-size:17px; line-height:1.85; }
+    .about-copy p:last-child { margin:0; color:var(--paper); }
+    .contact { display:flex; justify-content:space-between; align-items:center; gap:36px; padding:44px; border:1px solid #5c4644; border-radius:12px; background:#211f24; }
+    .contact .eyebrow { margin-bottom:14px; }
+    .contact h2 { margin:0 0 16px; font-size:clamp(32px,3.4vw,44px); font-weight:650; letter-spacing:-.04em; }
+    .contact p { max-width:440px; margin:0; color:var(--muted); font-size:16px; line-height:1.8; }
+    .contact-email { flex-shrink:0; max-width:100%; }
+    .contact-email small { display:block; margin-bottom:12px; color:var(--muted); font-size:13px; }
+    .mail { display:inline-flex; align-items:center; min-height:48px; color:var(--coral); font-size:clamp(18px,2vw,24px); font-weight:550; letter-spacing:-.025em; text-decoration:underline; text-decoration-color:#78514a; text-underline-offset:8px; overflow-wrap:anywhere; }
+    .mail:hover { text-decoration-color:var(--coral); }
+    footer { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:24px; padding:30px 0 36px; border-top:1px solid var(--line); color:var(--muted); font-size:13px; line-height:1.8; }
+    footer strong { color:var(--paper); font-weight:600; }
+    @media(max-width:900px) {
+      .wrap,.rule { width:calc(100% - 48px); }
+      .hero { gap:28px; padding-block:72px; }
+      .contact { flex-direction:column; align-items:flex-start; gap:28px; }
+      .about { gap:40px; }
     }
-    @media(max-width:450px) { .nav{flex-wrap:wrap;gap:4px;padding-block:12px} nav{width:100%;justify-content:space-between;gap:14px} .brand img{width:43px;height:43px}.brand-name{font-size:13px} .hero{padding-top:48px} h1{font-size:clamp(36px,10.7vw,49px)}.section-title{display:block}.section-title p{margin-top:9px} }
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
+    @media(max-width:680px) {
+      .wrap,.rule { width:calc(100% - 40px); }
+      .nav { min-height:84px; gap:16px; }
+      .brand { gap:4px; }
+      .brand img { width:52px; height:52px; }
+      .brand-name { font-size:14px; }
+      .brand-name span { font-size:10px; }
+      nav { gap:18px; font-size:13px; }
+      nav a:last-child { padding-inline:0; border:0; }
+      .hero { grid-template-columns:1fr; gap:40px; padding-block:56px; }
+      h1 { font-size:clamp(38px,9vw,58px); }
+      .lead { font-size:16px; margin-top:24px; }
+      .showcase { width:100%; max-width:440px; margin-inline:auto; padding:12px 24px 0; }
+      .showcase img { width:min(100%,300px); }
+      .section { padding-block:56px; }
+      .section-title { align-items:flex-start; flex-direction:column; gap:12px; margin-bottom:24px; }
+      .cards { grid-template-columns:1fr; gap:12px; }
+      .card { padding:24px; }
+      .card h3 { font-size:19px; }
+      .about { grid-template-columns:1fr; gap:24px; }
+      .about-copy p { font-size:16px; }
+      .contact { padding:28px 24px; }
+      footer { gap:12px; }
+    }
+    @media(max-width:380px) {
+      .nav { flex-wrap:wrap; gap:0; padding-block:8px; }
+      nav { width:100%; justify-content:space-between; }
+      .card { padding:22px 20px; }
+      .card-top { gap:10px; }
+      .card h3 { font-size:18px; }
+      .contact { padding:26px 20px; }
+    }
+    @media(prefers-reduced-motion:reduce) { html{scroll-behavior:auto} *,*::before,*::after{transition:none!important} }
   </style>
 </head>
 <body>
@@ -84,7 +122,7 @@
   <header>
     <div class="wrap nav">
       <a class="brand" href="#top" aria-label="Lihto Studio home">
-        <img src="./lihto-logo.png" alt="" width="53" height="53" />
+        <img src="./lihto-logo.png?v=c64042e0" alt="" width="53" height="53" />
         <span class="brand-name">LIHTO <span>STUDIO</span></span>
       </a>
       <nav aria-label="Main navigation">
@@ -102,12 +140,12 @@
         <h1><span class="studio-name">Lihto Studio</span>Made to Play.<br/><em>Built to Create.</em></h1>
         <p class="lead">Practical Unity tools, reusable game systems, and creative solutions for game developers.</p>
         <div class="actions">
-          <a class="btn" href="#focus">Explore our focus <span style="margin-left:9px" aria-hidden="true">↗</span></a>
+          <a class="btn" href="#focus">Explore our focus</a>
           <a class="btn btn-secondary" href="#contact">Get in touch</a>
         </div>
       </div>
       <div class="showcase" aria-label="Lihto Studio brand mark">
-        <img src="./lihto-logo.png" alt="Lihto Studio logo in cream and coral" width="280" height="280" />
+        <img src="./lihto-logo.png?v=c64042e0" alt="Lihto Studio logo in cream and coral" width="280" height="280" />
         <div class="showcase-note">Little Ideas. Huge Worlds.</div>
       </div>
     </div>
@@ -115,29 +153,29 @@
     <div class="rule" id="focus"></div>
     <section class="wrap section" aria-labelledby="focus-heading">
       <div class="section-title">
-        <h2 id="focus-heading">What we build</h2>
+        <div><p class="eyebrow">Our focus</p><h2 id="focus-heading">Tools for the way you create.</h2></div>
         <p>Simple ideas, carefully made.</p>
       </div>
       <div class="cards">
-        <article class="card"><span class="num">01 / TOOLS</span><h3>Unity Editor Tools</h3><p>Thoughtful editor utilities and extensions designed to reduce repetitive work and keep workflows organized.</p></article>
-        <article class="card"><span class="num">02 / SYSTEMS</span><h3>Reusable Game Systems</h3><p>Flexible foundations and modular components that help developers spend more time on the game itself.</p></article>
-        <article class="card"><span class="num">03 / CREATION</span><h3>Game Development</h3><p>Game prototypes and playful ideas explored through iteration, simplicity, and attention to detail.</p></article>
-        <article class="card"><span class="num">04 / WORKFLOW</span><h3>Developer Utilities</h3><p>Focused utilities for everyday development tasks, built around clarity and ease of use.</p></article>
+        <article class="card"><div class="card-top"><span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 8h18M8 8v13M6 5.5h.01M9 5.5h.01"/></svg></span><h3>Unity Editor Tools</h3></div><p>Thoughtful editor utilities and extensions designed to reduce repetitive work and keep workflows organized.</p></article>
+        <article class="card"><div class="card-top"><span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Zm-9 9 9 5 9-5M3 16l9 5 9-5"/></svg></span><h3>Reusable Game Systems</h3></div><p>Flexible foundations and modular components that help developers spend more time on the game itself.</p></article>
+        <article class="card"><div class="card-top"><span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 7h8a4 4 0 0 1 4 3l1 6a2 2 0 0 1-3 2l-3-2H9l-3 2a2 2 0 0 1-3-2l1-6a4 4 0 0 1 4-3Z M6 11h4M8 9v4M16 11h.01M18 13h.01"/></svg></span><h3>Game Development</h3></div><p>Game prototypes and playful ideas explored through iteration, simplicity, and attention to detail.</p></article>
+        <article class="card"><div class="card-top"><span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m8 7-5 5 5 5m8-10 5 5-5 5m-3-13-2 20"/></svg></span><h3>Developer Utilities</h3></div><p>Focused utilities for everyday development tasks, built around clarity and ease of use.</p></article>
       </div>
     </section>
 
     <div class="rule" id="about"></div>
     <section class="wrap section about" aria-labelledby="about-heading">
       <div><p class="eyebrow">Our approach</p><h2 id="about-heading">Little Ideas.<br/>Huge Worlds.</h2></div>
-      <div><p>Lihto Studio is an independent game development brand focused on creating useful tools and reusable systems for Unity developers.</p><p>We believe that simple ideas can lead to great experiences.</p></div>
+      <div class="about-copy"><p>Lihto Studio is an independent game development brand focused on creating useful tools and reusable systems for Unity developers.</p><p>We believe that simple ideas can lead to great experiences.</p></div>
     </section>
 
     <div class="rule" id="contact"></div>
     <section class="wrap section" aria-labelledby="contact-heading">
       <div class="contact">
-        <div><p class="eyebrow">Contact &amp; product support</p><h2 id="contact-heading">Let's talk.</h2><p>For product support, collaborations, and general inquiries.<br/>Our contact email will be published here when available.</p></div>
-        <!-- Replace this placeholder block with a mailto link when a verified email is available. -->
-        <div class="contact-placeholder"><code>YOUR_EMAIL@example.com</code><small>Placeholder — contact email not yet provided</small></div>
+        <div><p class="eyebrow">Contact &amp; product support</p><h2 id="contact-heading">Let's talk.</h2><p>Have a product question or an idea to share?<br/>Get in touch for support, collaborations, and general inquiries.</p></div>
+
+        <div class="contact-email"><small>Say hello</small><a class="mail" href="mailto:trinhtuu.05@gmail.com">trinhtuu.05@gmail.com</a></div>
       </div>
     </section>
   </main>

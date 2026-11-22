@@ -33,6 +33,9 @@ def main():
     for base in ("https://example.github.io/", "https://example.github.io/REPOSITORY/"):
         for url in page.urls:
             parsed = urlsplit(url)
+            if parsed.scheme == "mailto":
+                assert "@" in parsed.path and not any(c.isspace() for c in parsed.path), f"Invalid contact link: {url}"
+                continue
             assert url and not parsed.scheme and not parsed.netloc, f"Review external/empty URL: {url}"
             resolved = urlsplit(urljoin(base, url))
             prefix = urlsplit(base).path
