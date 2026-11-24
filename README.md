@@ -1,4 +1,4 @@
-﻿# Lihto Studio
+# ThunderPunch Studio
 
 Official website: https://lihitoo.github.io/
 
@@ -13,11 +13,11 @@ python -m http.server 8080 --bind 127.0.0.1
 
 Open http://127.0.0.1:8080/. Stop the server with Ctrl+C.
 
-`index.html`, `lihto-logo.png`, and `.nojekyll` stay at the repository root. All asset URLs are relative, so the same files work at both `https://USERNAME.github.io/` and `https://USERNAME.github.io/REPOSITORY/` without changes.
+HTML, CSS and download links use relative paths. The social preview image uses the absolute production URL.
 
 ## Deployment
 
-Repository **Settings > Pages > Build and deployment > Source** must be **GitHub Actions**. The workflow in `.github/workflows/pages.yml` validates the site, stages only its public files, and deploys on pushes to `main`. It also supports **Actions > Deploy Lihto Studio > Run workflow**. It needs `contents: read`, `pages: write`, and `id-token: write`, and uses the `github-pages` environment.
+Repository **Settings > Pages > Build and deployment > Source** must be **GitHub Actions**. The workflow in `.github/workflows/pages.yml` validates the site, stages only its public files, and deploys on pushes to `main`. It also supports **Actions > Deploy ThunderPunch Studio > Run workflow**. It needs `contents: read`, `pages: write`, and `id-token: write`, and uses the `github-pages` environment.
 
 Check the workflow's deployment URL and successful run before considering a release live. Pages CDN/browser caches may briefly serve the previous version.
 
@@ -25,7 +25,9 @@ Reference: [GitHub Pages custom workflows](https://docs.github.com/en/pages/gett
 
 ## Contact information
 
-Contact and product support: [trinhtuu.05@gmail.com](mailto:trinhtuu.05@gmail.com), supplied by the studio owner. The site uses the owner's supplied 512px logo in `lihto-logo.png`.
+Contact and product support: [trinhtuu.05@gmail.com](mailto:trinhtuu.05@gmail.com).
+
+The four ThunderPunch PNGs in assets/ are the originals supplied by the studio. They are downloadable under Brand assets.
 
 ## Diagnosis (22 November 2026)
 
